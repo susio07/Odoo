@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="view_tarea_tree" model="ir.ui.view">
+            <field name="name">tarea.tarea.tree</field>
+            <field name="model">tarea.tarea</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Tarea">
+                    <field name="nombre" />
+                    <field name="descripcion" />
+					<field name="terminada" />
+					<field name="activa"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_tarea_form" model="ir.ui.view">
+            <field name="name">tarea.tarea.form</field>
+            <field name="model">tarea.tarea</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Tarea">
+                    <sheet>
+                        <field name="foto" widget="image" class="oe_left oe_avatar" />
+                        <div class="oe_title">
+                            <h1>
+                                <table>
+                                    <tr>
+                                        <td style="padding-right:10px;"><field name="nombre" placeholder="El Worbu" /></td>
+                                    </tr>
+                                </table>
+                            </h1>
+                        </div>
+                        <notebook colspan="2">
+                            <page name="information"
+                                string="Información">
+                                <group col="4" colspan="2"
+                                    name="personal_detail">
+                                    <field name="descripcion" />
+									<field name="terminada" />
+									<field name="activa"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_tareas">
+            <field name="name">Tareas</field>
+            <field name="res_model">tarea.tarea</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea una nueva tarea</p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_tarea" name="Tareas"/>
+        <menuitem id="menu_tareas" name="Tareas" parent="menu_tarea"  
+                  action="action_view_tareas"/>/>
+    </data>
+</odoo>
